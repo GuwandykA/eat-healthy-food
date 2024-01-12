@@ -24,150 +24,6 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/banner/add": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "create and update data  banner",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "banner"
-                ],
-                "parameters": [
-                    {
-                        "description": "Create JSON",
-                        "name": "banner",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/banner.BannerDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/banner/delete": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "delete data  banner",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "banner"
-                ],
-                "parameters": [
-                    {
-                        "description": "Delete JSON",
-                        "name": "banner",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/banner.ReqUUIDDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/banner/get": {
-            "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "one data banner",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "banner"
-                ],
-                "parameters": [
-                    {
-                        "description": "Get One JSON",
-                        "name": "banner",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/banner.ReqUUIDDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/banner.BannerDTO"
-                        }
-                    }
-                }
-            }
-        },
-        "/banner/get-all": {
-            "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "all data banner",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "banner"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/banner.BannerDTO"
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/categories/add": {
             "post": {
                 "security": [
@@ -193,6 +49,44 @@ const docTemplate = `{
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/category.CategoryIdDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/add-product": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "create and update data  sub-categories",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "categories"
+                ],
+                "parameters": [
+                    {
+                        "description": "Create JSON",
+                        "name": "categories",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/category.SubCategoryIdDTO"
                         }
                     }
                 ],
@@ -244,113 +138,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/categories/get": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "one data category",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "categories"
-                ],
-                "parameters": [
-                    {
-                        "description": "Get One JSON",
-                        "name": "categories",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/category.PaginationDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/category.DataDTO"
-                        }
-                    }
-                }
-            }
-        },
-        "/categories/get-all": {
-            "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "all data categories",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "categories"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/category.CategoryDTO"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/categories/sub-add": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "create and update data  sub-categories",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "categories"
-                ],
-                "parameters": [
-                    {
-                        "description": "Create JSON",
-                        "name": "categories",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/category.SubCategoryIdDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/categories/sub-delete": {
+        "/categories/delete-product": {
             "post": {
                 "security": [
                     {
@@ -388,336 +176,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/edu-admin/add": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "create and update data  edu admin",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admin/edu-admin"
-                ],
-                "parameters": [
-                    {
-                        "description": "Create JSON",
-                        "name": "admin/edu-admin",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/edu_admin.EduAdminDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/edu-admin/delete": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "delete data  edu-admin",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admin/edu-admin"
-                ],
-                "parameters": [
-                    {
-                        "description": "Delete JSON",
-                        "name": "admin/edu-admin",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/edu_admin.ReqUUIDDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/edu-admin/get-all": {
-            "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "all data edu center",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admin/edu-admin"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/edu_admin.EduAdminDTO"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/edu-center/add": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "create and update data  edu center",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admin/edu-center"
-                ],
-                "parameters": [
-                    {
-                        "description": "Create JSON",
-                        "name": "admin/edu-center",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/edu_center.EduCentDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/edu-center/add-branch": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "create and update data  edu center branch",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admin/edu-center"
-                ],
-                "parameters": [
-                    {
-                        "description": "Create JSON",
-                        "name": "admin/edu-center",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/edu_center.EduCentBranchDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/edu-center/delete": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "delete data  edu-center",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admin/edu-center"
-                ],
-                "parameters": [
-                    {
-                        "description": "Delete JSON",
-                        "name": "admin/edu-center",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/edu_center.ReqUUIDDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/edu-center/delete-branch": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "delete data  edu-center branch",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admin/edu-center"
-                ],
-                "parameters": [
-                    {
-                        "description": "Delete JSON",
-                        "name": "admin/edu-center",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/edu_center.ReqUUIDDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/edu-center/get-all": {
-            "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "all data edu center",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admin/edu-center"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/edu_center.EduCentDTO"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/edu-center/get-one": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "get data quater",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "admin/edu-center"
-                ],
-                "parameters": [
-                    {
-                        "description": "Get One JSON",
-                        "name": "admin/edu-center",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/edu_center.ReqUUIDDTO"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/edu_center.EduCentBranchDTO"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/file": {
+        "/categories/file": {
             "post": {
                 "security": [
                     {
@@ -732,7 +191,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "auth"
+                    "file"
                 ],
                 "parameters": [
                     {
@@ -753,14 +212,14 @@ const docTemplate = `{
                 }
             }
         },
-        "/get-profile": {
+        "/categories/get": {
             "post": {
                 "security": [
                     {
                         "BearerAuth": []
                     }
                 ],
-                "description": "profile data for Admin",
+                "description": "product data",
                 "consumes": [
                     "application/json"
                 ],
@@ -768,21 +227,37 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "auth"
+                    "categories"
+                ],
+                "parameters": [
+                    {
+                        "description": "Get One JSON",
+                        "name": "categories",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/category.ReqIdDTO"
+                        }
+                    }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/auth.ResUserDTO"
+                            "$ref": "#/definitions/category.SubCategoryDTO"
                         }
                     }
                 }
             }
         },
-        "/login": {
-            "post": {
-                "description": "login for Admin",
+        "/categories/get-all": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "all data categories",
                 "consumes": [
                     "application/json"
                 ],
@@ -790,24 +265,16 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "auth"
-                ],
-                "parameters": [
-                    {
-                        "description": "Login JSON",
-                        "name": "auth",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/auth.LoginDTO"
-                        }
-                    }
+                    "categories"
                 ],
                 "responses": {
                     "200": {
-                        "description": "token",
+                        "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/category.CategoryDTO"
+                            }
                         }
                     }
                 }
@@ -844,104 +311,23 @@ const docTemplate = `{
                 }
             }
         },
-        "auth.LoginDTO": {
-            "type": "object",
-            "required": [
-                "login",
-                "password"
-            ],
-            "properties": {
-                "login": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            }
-        },
-        "auth.ResUserDTO": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "type": "integer"
-                },
-                "avatar": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "fullName": {
-                    "type": "string"
-                },
-                "lightMode": {
-                    "type": "integer"
-                },
-                "login": {
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "socialMedia": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "banner.BannerDTO": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "type": "integer"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "imagePath": {
-                    "type": "string"
-                },
-                "link": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            }
-        },
-        "banner.ReqUUIDDTO": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "type": "string"
-                }
-            }
-        },
         "category.CategoryDTO": {
             "type": "object",
             "properties": {
                 "Id": {
                     "type": "integer"
                 },
+                "count": {
+                    "type": "integer"
+                },
                 "createdAt": {
                     "type": "string"
                 },
-                "imagePath": {
+                "image": {
                     "type": "string"
                 },
                 "name": {
-                    "$ref": "#/definitions/category.Language"
-                },
-                "status": {
-                    "type": "boolean"
-                },
-                "subName": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/category.Language"
-                    }
+                    "type": "string"
                 }
             }
         },
@@ -951,11 +337,11 @@ const docTemplate = `{
                 "Id": {
                     "type": "integer"
                 },
-                "name": {
-                    "$ref": "#/definitions/category.Language"
+                "image": {
+                    "type": "string"
                 },
-                "status": {
-                    "type": "boolean"
+                "name": {
+                    "type": "string"
                 }
             }
         },
@@ -973,39 +359,11 @@ const docTemplate = `{
                 }
             }
         },
-        "category.Language": {
-            "type": "object",
-            "properties": {
-                "en": {
-                    "type": "string"
-                },
-                "ru": {
-                    "type": "string"
-                },
-                "tm": {
-                    "type": "string"
-                }
-            }
-        },
-        "category.PaginationDTO": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "type": "integer"
-                },
-                "limit": {
-                    "type": "integer"
-                },
-                "page": {
-                    "type": "integer"
-                }
-            }
-        },
         "category.ReqIdDTO": {
             "type": "object",
             "properties": {
                 "Id": {
-                    "type": "string"
+                    "type": "integer"
                 }
             }
         },
@@ -1015,11 +373,8 @@ const docTemplate = `{
                 "Id": {
                     "type": "integer"
                 },
-                "catId": {
+                "catName": {
                     "type": "string"
-                },
-                "categoryTitle": {
-                    "$ref": "#/definitions/category.Language"
                 },
                 "createdAt": {
                     "type": "string"
@@ -1027,8 +382,9 @@ const docTemplate = `{
                 "imagePath": {
                     "type": "string"
                 },
+                "item": {},
                 "name": {
-                    "$ref": "#/definitions/category.Language"
+                    "type": "string"
                 }
             }
         },
@@ -1041,163 +397,14 @@ const docTemplate = `{
                 "catId": {
                     "type": "integer"
                 },
+                "image": {
+                    "type": "string"
+                },
+                "item": {},
                 "name": {
-                    "$ref": "#/definitions/category.Language"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "edu_admin.EduAdminDTO": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "type": "integer"
-                },
-                "avatar": {
-                    "type": "string"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "eduBranchId": {
-                    "type": "integer"
-                },
-                "fullName": {
-                    "type": "string"
-                },
-                "logo": {
-                    "type": "string"
-                },
-                "mail": {
-                    "type": "string"
-                },
-                "name": {
-                    "$ref": "#/definitions/edu_admin.Language"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "region": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "edu_admin.Language": {
-            "type": "object",
-            "properties": {
-                "en": {
-                    "type": "string"
-                },
-                "ru": {
-                    "type": "string"
-                },
-                "tm": {
                     "type": "string"
                 }
             }
-        },
-        "edu_admin.ReqUUIDDTO": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "edu_center.EduCentBranchDTO": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "type": "integer"
-                },
-                "address": {
-                    "$ref": "#/definitions/edu_center.Language"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "eduId": {
-                    "type": "integer"
-                },
-                "mail": {
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "region": {
-                    "type": "string"
-                }
-            }
-        },
-        "edu_center.EduCentDTO": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "type": "integer"
-                },
-                "bgImage": {
-                    "type": "string"
-                },
-                "content": {
-                    "$ref": "#/definitions/edu_center.Language"
-                },
-                "count": {
-                    "type": "integer"
-                },
-                "createdAt": {
-                    "type": "string"
-                },
-                "fullName": {
-                    "type": "string"
-                },
-                "logo": {
-                    "type": "string"
-                },
-                "name": {
-                    "$ref": "#/definitions/edu_center.Language"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "region": {
-                    "type": "string"
-                }
-            }
-        },
-        "edu_center.Language": {
-            "type": "object",
-            "properties": {
-                "en": {
-                    "type": "string"
-                },
-                "ru": {
-                    "type": "string"
-                },
-                "tm": {
-                    "type": "string"
-                }
-            }
-        },
-        "edu_center.ReqUUIDDTO": {
-            "type": "object",
-            "properties": {
-                "ID": {
-                    "type": "integer"
-                }
-            }
-        }
-    },
-    "securityDefinitions": {
-        "BearerAuth": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header"
         }
     }
 }`
@@ -1205,8 +412,8 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:5000",
-	BasePath:         "/v1/admin",
+	Host:             "localhost:8081",
+	BasePath:         "/v1",
 	Schemes:          []string{},
 	Title:            "Admin Course APIs",
 	Description:      "Testing Swagger APIs.",

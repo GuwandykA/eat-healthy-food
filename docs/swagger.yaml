@@ -1,4 +1,4 @@
-basePath: /v1/admin
+basePath: /v1
 definitions:
   appresult.AppError:
     properties:
@@ -19,80 +19,27 @@ definitions:
       status:
         type: boolean
     type: object
-  auth.LoginDTO:
-    properties:
-      login:
-        type: string
-      password:
-        type: string
-    required:
-    - login
-    - password
-    type: object
-  auth.ResUserDTO:
-    properties:
-      Id:
-        type: integer
-      avatar:
-        type: string
-      createdAt:
-        type: string
-      fullName:
-        type: string
-      lightMode:
-        type: integer
-      login:
-        type: string
-      phoneNumber:
-        type: string
-      socialMedia:
-        type: string
-      username:
-        type: string
-    type: object
-  banner.BannerDTO:
-    properties:
-      Id:
-        type: integer
-      createdAt:
-        type: string
-      imagePath:
-        type: string
-      link:
-        type: string
-      type:
-        type: string
-    type: object
-  banner.ReqUUIDDTO:
-    properties:
-      Id:
-        type: string
-    type: object
   category.CategoryDTO:
     properties:
       Id:
         type: integer
+      count:
+        type: integer
       createdAt:
         type: string
-      imagePath:
+      image:
         type: string
       name:
-        $ref: '#/definitions/category.Language'
-      status:
-        type: boolean
-      subName:
-        items:
-          $ref: '#/definitions/category.Language'
-        type: array
+        type: string
     type: object
   category.CategoryIdDTO:
     properties:
       Id:
         type: integer
+      image:
+        type: string
       name:
-        $ref: '#/definitions/category.Language'
-      status:
-        type: boolean
+        type: string
     type: object
   category.DataDTO:
     properties:
@@ -103,43 +50,24 @@ definitions:
           $ref: '#/definitions/category.SubCategoryDTO'
         type: array
     type: object
-  category.Language:
-    properties:
-      en:
-        type: string
-      ru:
-        type: string
-      tm:
-        type: string
-    type: object
-  category.PaginationDTO:
-    properties:
-      Id:
-        type: integer
-      limit:
-        type: integer
-      page:
-        type: integer
-    type: object
   category.ReqIdDTO:
     properties:
       Id:
-        type: string
+        type: integer
     type: object
   category.SubCategoryDTO:
     properties:
       Id:
         type: integer
-      catId:
+      catName:
         type: string
-      categoryTitle:
-        $ref: '#/definitions/category.Language'
       createdAt:
         type: string
       imagePath:
         type: string
+      item: {}
       name:
-        $ref: '#/definitions/category.Language'
+        type: string
     type: object
   category.SubCategoryIdDTO:
     properties:
@@ -147,105 +75,13 @@ definitions:
         type: integer
       catId:
         type: integer
+      image:
+        type: string
+      item: {}
       name:
-        $ref: '#/definitions/category.Language'
-      status:
-        type: boolean
-    type: object
-  edu_admin.EduAdminDTO:
-    properties:
-      Id:
-        type: integer
-      avatar:
-        type: string
-      createdAt:
-        type: string
-      eduBranchId:
-        type: integer
-      fullName:
-        type: string
-      logo:
-        type: string
-      mail:
-        type: string
-      name:
-        $ref: '#/definitions/edu_admin.Language'
-      phoneNumber:
-        type: string
-      region:
-        type: string
-      status:
-        type: boolean
-    type: object
-  edu_admin.Language:
-    properties:
-      en:
-        type: string
-      ru:
-        type: string
-      tm:
         type: string
     type: object
-  edu_admin.ReqUUIDDTO:
-    properties:
-      Id:
-        type: integer
-    type: object
-  edu_center.EduCentBranchDTO:
-    properties:
-      Id:
-        type: integer
-      address:
-        $ref: '#/definitions/edu_center.Language'
-      createdAt:
-        type: string
-      eduId:
-        type: integer
-      mail:
-        type: string
-      phoneNumber:
-        type: string
-      region:
-        type: string
-    type: object
-  edu_center.EduCentDTO:
-    properties:
-      Id:
-        type: integer
-      bgImage:
-        type: string
-      content:
-        $ref: '#/definitions/edu_center.Language'
-      count:
-        type: integer
-      createdAt:
-        type: string
-      fullName:
-        type: string
-      logo:
-        type: string
-      name:
-        $ref: '#/definitions/edu_center.Language'
-      phoneNumber:
-        type: string
-      region:
-        type: string
-    type: object
-  edu_center.Language:
-    properties:
-      en:
-        type: string
-      ru:
-        type: string
-      tm:
-        type: string
-    type: object
-  edu_center.ReqUUIDDTO:
-    properties:
-      ID:
-        type: integer
-    type: object
-host: localhost:5000
+host: localhost:8081
 info:
   contact:
     email: support@swagger.io
@@ -259,93 +95,6 @@ info:
   title: Admin Course APIs
   version: "1.0"
 paths:
-  /banner/add:
-    post:
-      consumes:
-      - application/json
-      description: create and update data  banner
-      parameters:
-      - description: Create JSON
-        in: body
-        name: banner
-        required: true
-        schema:
-          $ref: '#/definitions/banner.BannerDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      tags:
-      - banner
-  /banner/delete:
-    post:
-      consumes:
-      - application/json
-      description: delete data  banner
-      parameters:
-      - description: Delete JSON
-        in: body
-        name: banner
-        required: true
-        schema:
-          $ref: '#/definitions/banner.ReqUUIDDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      tags:
-      - banner
-  /banner/get:
-    get:
-      consumes:
-      - application/json
-      description: one data banner
-      parameters:
-      - description: Get One JSON
-        in: body
-        name: banner
-        required: true
-        schema:
-          $ref: '#/definitions/banner.ReqUUIDDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/banner.BannerDTO'
-      security:
-      - BearerAuth: []
-      tags:
-      - banner
-  /banner/get-all:
-    get:
-      consumes:
-      - application/json
-      description: all data banner
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/banner.BannerDTO'
-            type: array
-      security:
-      - BearerAuth: []
-      tags:
-      - banner
   /categories/add:
     post:
       consumes:
@@ -358,6 +107,29 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/category.CategoryIdDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      tags:
+      - categories
+  /categories/add-product:
+    post:
+      consumes:
+      - application/json
+      description: create and update data  sub-categories
+      parameters:
+      - description: Create JSON
+        in: body
+        name: categories
+        required: true
+        schema:
+          $ref: '#/definitions/category.SubCategoryIdDTO'
       produces:
       - application/json
       responses:
@@ -392,71 +164,7 @@ paths:
       - BearerAuth: []
       tags:
       - categories
-  /categories/get:
-    post:
-      consumes:
-      - application/json
-      description: one data category
-      parameters:
-      - description: Get One JSON
-        in: body
-        name: categories
-        required: true
-        schema:
-          $ref: '#/definitions/category.PaginationDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/category.DataDTO'
-      security:
-      - BearerAuth: []
-      tags:
-      - categories
-  /categories/get-all:
-    get:
-      consumes:
-      - application/json
-      description: all data categories
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/category.CategoryDTO'
-            type: array
-      security:
-      - BearerAuth: []
-      tags:
-      - categories
-  /categories/sub-add:
-    post:
-      consumes:
-      - application/json
-      description: create and update data  sub-categories
-      parameters:
-      - description: Create JSON
-        in: body
-        name: categories
-        required: true
-        schema:
-          $ref: '#/definitions/category.SubCategoryIdDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      tags:
-      - categories
-  /categories/sub-delete:
+  /categories/delete-product:
     post:
       consumes:
       - application/json
@@ -479,206 +187,7 @@ paths:
       - BearerAuth: []
       tags:
       - categories
-  /edu-admin/add:
-    post:
-      consumes:
-      - application/json
-      description: create and update data  edu admin
-      parameters:
-      - description: Create JSON
-        in: body
-        name: admin/edu-admin
-        required: true
-        schema:
-          $ref: '#/definitions/edu_admin.EduAdminDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      tags:
-      - admin/edu-admin
-  /edu-admin/delete:
-    post:
-      consumes:
-      - application/json
-      description: delete data  edu-admin
-      parameters:
-      - description: Delete JSON
-        in: body
-        name: admin/edu-admin
-        required: true
-        schema:
-          $ref: '#/definitions/edu_admin.ReqUUIDDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      tags:
-      - admin/edu-admin
-  /edu-admin/get-all:
-    get:
-      consumes:
-      - application/json
-      description: all data edu center
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/edu_admin.EduAdminDTO'
-            type: array
-      security:
-      - BearerAuth: []
-      tags:
-      - admin/edu-admin
-  /edu-center/add:
-    post:
-      consumes:
-      - application/json
-      description: create and update data  edu center
-      parameters:
-      - description: Create JSON
-        in: body
-        name: admin/edu-center
-        required: true
-        schema:
-          $ref: '#/definitions/edu_center.EduCentDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      tags:
-      - admin/edu-center
-  /edu-center/add-branch:
-    post:
-      consumes:
-      - application/json
-      description: create and update data  edu center branch
-      parameters:
-      - description: Create JSON
-        in: body
-        name: admin/edu-center
-        required: true
-        schema:
-          $ref: '#/definitions/edu_center.EduCentBranchDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      tags:
-      - admin/edu-center
-  /edu-center/delete:
-    post:
-      consumes:
-      - application/json
-      description: delete data  edu-center
-      parameters:
-      - description: Delete JSON
-        in: body
-        name: admin/edu-center
-        required: true
-        schema:
-          $ref: '#/definitions/edu_center.ReqUUIDDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      tags:
-      - admin/edu-center
-  /edu-center/delete-branch:
-    post:
-      consumes:
-      - application/json
-      description: delete data  edu-center branch
-      parameters:
-      - description: Delete JSON
-        in: body
-        name: admin/edu-center
-        required: true
-        schema:
-          $ref: '#/definitions/edu_center.ReqUUIDDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      tags:
-      - admin/edu-center
-  /edu-center/get-all:
-    get:
-      consumes:
-      - application/json
-      description: all data edu center
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/edu_center.EduCentDTO'
-            type: array
-      security:
-      - BearerAuth: []
-      tags:
-      - admin/edu-center
-  /edu-center/get-one:
-    post:
-      consumes:
-      - application/json
-      description: get data quater
-      parameters:
-      - description: Get One JSON
-        in: body
-        name: admin/edu-center
-        required: true
-        schema:
-          $ref: '#/definitions/edu_center.ReqUUIDDTO'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/edu_center.EduCentBranchDTO'
-            type: array
-      security:
-      - BearerAuth: []
-      tags:
-      - admin/edu-center
-  /file:
+  /categories/file:
     post:
       consumes:
       - multipart/form-data
@@ -699,47 +208,46 @@ paths:
       security:
       - BearerAuth: []
       tags:
-      - auth
-  /get-profile:
+      - file
+  /categories/get:
     post:
       consumes:
       - application/json
-      description: profile data for Admin
+      description: product data
+      parameters:
+      - description: Get One JSON
+        in: body
+        name: categories
+        required: true
+        schema:
+          $ref: '#/definitions/category.ReqIdDTO'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/auth.ResUserDTO'
+            $ref: '#/definitions/category.SubCategoryDTO'
       security:
       - BearerAuth: []
       tags:
-      - auth
-  /login:
-    post:
+      - categories
+  /categories/get-all:
+    get:
       consumes:
       - application/json
-      description: login for Admin
-      parameters:
-      - description: Login JSON
-        in: body
-        name: auth
-        required: true
-        schema:
-          $ref: '#/definitions/auth.LoginDTO'
+      description: all data categories
       produces:
       - application/json
       responses:
         "200":
-          description: token
+          description: OK
           schema:
-            type: string
+            items:
+              $ref: '#/definitions/category.CategoryDTO'
+            type: array
+      security:
+      - BearerAuth: []
       tags:
-      - auth
-securityDefinitions:
-  BearerAuth:
-    in: header
-    name: Authorization
-    type: apiKey
+      - categories
 swagger: "2.0"

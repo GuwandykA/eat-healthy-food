@@ -3,22 +3,22 @@ version: '3.4'
 services:
   db:
     image: postgres:14.1-alpine
-    container_name: "db"
+    container_name: "saglyk-db"
     restart: always
     environment:
       - POSTGRES_USER=simple_admin
       - POSTGRES_PASSWORD=simple_password
       - POSTGRES_DB=simple_db
     ports:
-      - '5433:5432'
+      - '5434:5433'
     volumes:
       - /var/lib/postgresql/data
     networks:
-      - mynetwork
+      - network
   server:
-      image: app
+      image: saglyk
       restart: unless-stopped
-      container_name: "app"
+      container_name: "saglyk"
       build:
         context: .
         dockerfile: Dockerfile
@@ -29,10 +29,10 @@ services:
       depends_on:
         - db
       networks:
-        - mynetwork
+        - network
 
 
 networks:
-  mynetwork:
+  network:
     driver: bridge
 

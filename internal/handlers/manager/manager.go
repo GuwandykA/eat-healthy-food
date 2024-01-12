@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	categoryURL = "/v1/admin/categories"
+	categoryURL = "/v1/categories"
 )
 
 func Manager(client *pgxpool.Pool, logger *logging.Logger) *gin.Engine {

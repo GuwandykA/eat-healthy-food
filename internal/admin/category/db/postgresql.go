@@ -28,8 +28,7 @@ func (r repository) GetAllData(ctx context.Context) ([]category.CategoryDTO, err
 
 	q := ` select 
 				cs.Id, cs.name,
-				count(ss.name),
-				cs.img, cs.created_at
+				cs.img, count(ps.name), cs.created_at
 			 from categories cs 
 		left join products ps on ps.cat_id = cs.Id
 		group by cs.Id
@@ -67,11 +66,11 @@ func (r repository) GetOneData(ctx context.Context, req category.ReqIdDTO) ([]ca
 
 	q := `select 
 				ps.id, cs.name as cat_name,
-				ps.name, ps.img,
+				ps.name, ps.img
 			 from products ps
-		  left join categories cs on cs.id =  sc.cat_id
+		  left join categories cs on cs.id =  ps.cat_id
 		  where  ps.cat_id = $1
-		 order by sc.created_at desc ; `
+		 order by ps.created_at desc ; `
 
 	rows, err := r.client.Query(ctx, q, req.Id)
 	defer rows.Close()
@@ -85,8 +84,6 @@ func (r repository) GetOneData(ctx context.Context, req category.ReqIdDTO) ([]ca
 		errN := rows.Scan(
 			&n.Id, &n.CatName,
 			&n.Name, &n.Image,
-			&n.Item,
-			&n.CreatedAt,
 		)
 		if errN != nil {
 			fmt.Println("errN :::", errN)
@@ -99,7 +96,7 @@ func (r repository) GetOneData(ctx context.Context, req category.ReqIdDTO) ([]ca
 	return ns, nil
 }
 
-func (r repository) GetOneProduct(ctx context.Context, req category.ReqIdDTO) (category.SubCategoryDTO, error) {
+func (r repository) GetProductData(ctx context.Context, req category.ReqIdDTO) (category.SubCategoryDTO, error) {
 
 	var (
 		n category.SubCategoryDTO
@@ -154,7 +151,7 @@ func (r repository) UpdateData(ctx context.Context, req category.CategoryIdDTO) 
 	return nil
 }
 
-func (r repository) DeleteData(ctx context.Context, Id string) error {
+func (r repository) DeleteData(ctx context.Context, Id int) error {
 	var (
 		q string
 	)
@@ -199,7 +196,7 @@ func (r repository) UpdateSubData(ctx context.Context, req category.SubCategoryI
 	return nil
 }
 
-func (r repository) DeleteSubData(ctx context.Context, Id string) error {
+func (r repository) DeleteSubData(ctx context.Context, Id int) error {
 	var (
 		q string
 	)

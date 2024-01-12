@@ -223,7 +223,7 @@ func (h *handler) GetProduct(c *gin.Context) {
 // @Security BearerAuth
 // @Param       categories  body SubCategoryIdDTO  true  "Create JSON"
 // @Success     200  {string}  string
-// @Router      /categories/product-add [post]
+// @Router      /categories/add-product [post]
 func (h *handler) CreateSub(c *gin.Context) {
 	var (
 		err error
@@ -263,7 +263,7 @@ func (h *handler) CreateSub(c *gin.Context) {
 // @Security BearerAuth
 // @Param       categories  body ReqIdDTO  true  "Delete JSON"
 // @Success     200  {string}  string
-// @Router      /categories/product-delete [post]
+// @Router      /categories/delete-product [post]
 func (h *handler) DeleteSub(c *gin.Context) {
 
 	body, errBody := io.ReadAll(c.Request.Body)
@@ -289,7 +289,7 @@ func (h *handler) DeleteSub(c *gin.Context) {
 
 // FileUpload godoc
 // @Description file upload
-// @Tags        auth
+// @Tags        file
 //
 //	@Accept			multipart/form-data
 //	@Produce		json
@@ -297,7 +297,7 @@ func (h *handler) DeleteSub(c *gin.Context) {
 //
 // @Security BearerAuth
 // @Success     200  {string}  string
-// @Router      /file [post]
+// @Router      /categories/file [post]
 func (h *handler) FileUpload(c *gin.Context) {
 	var (
 		err error

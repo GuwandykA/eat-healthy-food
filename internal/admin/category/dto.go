@@ -39,5 +39,5 @@ type SubCategoryIdDTO struct {
 }
 
 type ReqIdDTO struct {
-	Id string `json:"Id"`
+	Id int `json:"Id"`
 }

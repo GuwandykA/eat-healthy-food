@@ -13,18 +13,18 @@ RUN go mod download
 COPY . .
 
 # Builds your app with optional configuration
-RUN GOARCH=amd64 GOOS=linux go build -o myapp ./app.go
+RUN GOARCH=amd64 GOOS=linux go build -o app ./app.go
 
 FROM scratch
 
-WORKDIR /app/
+WORKDIR /healthy/
 
-COPY --from=builder /build/myapp .
+COPY --from=builder /build/app .
 COPY --from=builder /build/config.yml .
 
 # Tells Docker which network port your container listens on
-EXPOSE 8080
-#ENTRYPOINT ["/app/myapp"]
-CMD ["/app/myapp"]
+EXPOSE 8081
+#ENTRYPOINT ["/app/app"]
+CMD ["/healthy/app"]
 
 

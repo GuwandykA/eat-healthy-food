@@ -3,8 +3,8 @@ listen:
   type: port
   port: 8081
 storage:
-  host: db
-#  host: localhost
+#  host: db
+  host: localhost
   port: 5432
   database: simple_db
   username: simple_admin
