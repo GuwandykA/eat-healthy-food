@@ -1,0 +1,14 @@
+is_debug: true
+listen:
+  type: port
+  port: 8081
+storage:
+  host: db
+#  host: localhost
+  port: 5432
+  database: simple_db
+  username: simple_admin
+  password: simple_password
+  pg_pool_max_conn: 100
+app_version: 0.0.1
+public_file_path: ./public
