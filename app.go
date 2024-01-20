@@ -25,7 +25,7 @@ import (
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host localhost:8081
+// @host 216.250.12.77
 // @BasePath /v1
 
 // @Success     200  {object} appresult.AppSuccess  "Success Code"

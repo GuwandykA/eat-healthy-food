@@ -81,7 +81,7 @@ definitions:
       name:
         type: string
     type: object
-host: localhost:8081
+host: 216.250.12.77
 info:
   contact:
     email: support@swagger.io
@@ -122,7 +122,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: create and update data  sub-categories
+      description: create and update data  product
       parameters:
       - description: Create JSON
         in: body
@@ -168,7 +168,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: delete data  sub-categories
+      description: delete data  product
       parameters:
       - description: Delete JSON
         in: body
@@ -213,7 +213,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: product data
+      description: one data category
       parameters:
       - description: Get One JSON
         in: body
@@ -227,7 +227,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/category.SubCategoryDTO'
+            $ref: '#/definitions/category.DataDTO'
       security:
       - BearerAuth: []
       tags:
@@ -246,6 +246,29 @@ paths:
             items:
               $ref: '#/definitions/category.CategoryDTO'
             type: array
+      security:
+      - BearerAuth: []
+      tags:
+      - categories
+  /categories/get-product:
+    post:
+      consumes:
+      - application/json
+      description: product data
+      parameters:
+      - description: Get One JSON
+        in: body
+        name: categories
+        required: true
+        schema:
+          $ref: '#/definitions/category.ReqIdDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/category.SubCategoryDTO'
       security:
       - BearerAuth: []
       tags:

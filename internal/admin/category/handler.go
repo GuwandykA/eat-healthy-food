@@ -192,7 +192,7 @@ func (h *handler) Delete(c *gin.Context) {
 // @Security BearerAuth
 // @Param       categories  body ReqIdDTO true  "Get One JSON"
 // @Success     200  {object}  SubCategoryDTO
-// @Router      /categories/get [post]
+// @Router      /categories/get-product [post]
 func (h *handler) GetProduct(c *gin.Context) {
 	body, errBody := io.ReadAll(c.Request.Body)
 	if errBody != nil {
@@ -216,7 +216,7 @@ func (h *handler) GetProduct(c *gin.Context) {
 }
 
 // CreateSub godoc
-// @Description create and update data  sub-categories
+// @Description create and update data  product
 // @Tags        categories
 // @Accept      json
 // @Produce     json
@@ -256,7 +256,7 @@ func (h *handler) CreateSub(c *gin.Context) {
 }
 
 // DeleteSub godoc
-// @Description delete data  sub-categories
+// @Description delete data  product
 // @Tags        categories
 // @Accept      json
 // @Produce     json
