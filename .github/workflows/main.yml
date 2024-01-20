@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - "dev"
+  pull_request:
+      branches:
+      - "main"
 jobs:
   deploy:
     name: build && push image to docker hub
