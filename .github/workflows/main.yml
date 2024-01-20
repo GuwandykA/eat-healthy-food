@@ -29,3 +29,13 @@ jobs:
           file: Dockerfile
           push: true
           tags: guvandyk/eat-healthy-food:latest
+
+      - name: main (merge)
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+
+      - name: main (pull request)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "BRANCH=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
