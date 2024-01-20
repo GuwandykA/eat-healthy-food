@@ -69,7 +69,7 @@ const docTemplate = `{
                         "BearerAuth": []
                     }
                 ],
-                "description": "create and update data  sub-categories",
+                "description": "create and update data  product",
                 "consumes": [
                     "application/json"
                 ],
@@ -145,7 +145,7 @@ const docTemplate = `{
                         "BearerAuth": []
                     }
                 ],
-                "description": "delete data  sub-categories",
+                "description": "delete data  product",
                 "consumes": [
                     "application/json"
                 ],
@@ -219,7 +219,7 @@ const docTemplate = `{
                         "BearerAuth": []
                     }
                 ],
-                "description": "product data",
+                "description": "one data category",
                 "consumes": [
                     "application/json"
                 ],
@@ -244,7 +244,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/category.SubCategoryDTO"
+                            "$ref": "#/definitions/category.DataDTO"
                         }
                     }
                 }
@@ -275,6 +275,44 @@ const docTemplate = `{
                             "items": {
                                 "$ref": "#/definitions/category.CategoryDTO"
                             }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/get-product": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "product data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "categories"
+                ],
+                "parameters": [
+                    {
+                        "description": "Get One JSON",
+                        "name": "categories",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/category.ReqIdDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/category.SubCategoryDTO"
                         }
                     }
                 }
@@ -412,7 +450,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:8081",
+	Host:             "216.250.12.77",
 	BasePath:         "/v1",
 	Schemes:          []string{},
 	Title:            "Admin Course APIs",

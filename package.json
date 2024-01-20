@@ -1,6 +1,6 @@
 {
     "apps" : [{
-      "name"        : "admin-course-backend",
+      "name"        : "healthy-backend",
       "script"      : "./app"
     }]
 }

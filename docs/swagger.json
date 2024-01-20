@@ -15,7 +15,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:8081",
+    "host": "216.250.12.77",
     "basePath": "/v1",
     "paths": {
         "/categories/add": {
@@ -63,7 +63,7 @@
                         "BearerAuth": []
                     }
                 ],
-                "description": "create and update data  sub-categories",
+                "description": "create and update data  product",
                 "consumes": [
                     "application/json"
                 ],
@@ -139,7 +139,7 @@
                         "BearerAuth": []
                     }
                 ],
-                "description": "delete data  sub-categories",
+                "description": "delete data  product",
                 "consumes": [
                     "application/json"
                 ],
@@ -213,7 +213,7 @@
                         "BearerAuth": []
                     }
                 ],
-                "description": "product data",
+                "description": "one data category",
                 "consumes": [
                     "application/json"
                 ],
@@ -238,7 +238,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/category.SubCategoryDTO"
+                            "$ref": "#/definitions/category.DataDTO"
                         }
                     }
                 }
@@ -269,6 +269,44 @@
                             "items": {
                                 "$ref": "#/definitions/category.CategoryDTO"
                             }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/get-product": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "product data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "categories"
+                ],
+                "parameters": [
+                    {
+                        "description": "Get One JSON",
+                        "name": "categories",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/category.ReqIdDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/category.SubCategoryDTO"
                         }
                     }
                 }
