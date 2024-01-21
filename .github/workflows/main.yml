@@ -8,40 +8,19 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
-          ref: dev
+           ref: dev
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: 22
+          script: whoami
 
-      - name: Deploy to Server
-        uses: marvinpinto/action-automatic-releases@latest
-        env:
-          TARGET_HOST: ${{ secrets.SSH_HOST }}
-          TARGET_PORT: 22
-          TARGET_USER: ${{ secrets.SSH_USERNAME }}
-          TARGET_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-        with:
-          options: |
-            whoami
-#    steps:
-#      - uses: actions/checkout@v3
-#
-#
-#      - name: Install sshpass
-#        run: sudo apt-get install -y sshpass
-#
-#      - name: executing remote ssh commands using password
-#        uses: appleboy/ssh-action@v0.1.10
-#        with:
-#          host: ${{ secrets.SSH_HOST }}
-#          username: ${{ secrets.SSH_USERNAME }}
-#          password: ${{ secrets.SSH_PASSWORD }}
-##          key: ${{ secrets.SSH_KEY }}
-#          port: 22
-#          script: |
-#            whoami
 #  deploy:
 #    name: build && push image to docker hub
 #    runs-on: ubuntu-latest
