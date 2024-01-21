@@ -19,7 +19,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          script: whoami
+          script: |
+            cd /root/test
+            git pull
 
 #  deploy:
 #    name: build && push image to docker hub
