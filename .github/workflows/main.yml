@@ -13,6 +13,7 @@ jobs:
         with:
           host: ${{ secrets.DEPLOY_HOST_PROD }}
           username: ${{ secrets.DEPLOY_USER_PROD }}
+          password: ${{ secrets.SSH_PASSWORD }}
           key: ${{ secrets.DEPLOY_KEY_PROD }}
           port: 22
           script: |
