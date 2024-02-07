@@ -43,7 +43,7 @@ func (h *handler) Register(router *gin.RouterGroup) {
 
 // GetAll godoc
 // @Description all data news
-// @Tags        banner
+// @Tags        news
 // @Accept      json
 // @Produce     json
 // @Security BearerAuth
@@ -102,7 +102,7 @@ func (h *handler) GetOne(c *gin.Context) {
 }
 
 // Create godoc
-// @Description create banner
+// @Description create news
 // @Tags        news
 // @Accept      json
 // @Produce     json
@@ -183,8 +183,8 @@ func (h *handler) Update(c *gin.Context) {
 }
 
 // Delete godoc
-// @Description delete banner
-// @Tags        banner
+// @Description delete news
+// @Tags        news
 // @Accept      json
 // @Produce     json
 // @Security BearerAuth
