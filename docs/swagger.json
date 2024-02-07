@@ -517,7 +517,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "banner"
+                    "news"
                 ],
                 "parameters": [
                     {
@@ -548,7 +548,7 @@
                         "BearerAuth": []
                     }
                 ],
-                "description": "create banner",
+                "description": "create news",
                 "consumes": [
                     "application/json"
                 ],
@@ -663,7 +663,7 @@
                         "BearerAuth": []
                     }
                 ],
-                "description": "delete banner",
+                "description": "delete news",
                 "consumes": [
                     "application/json"
                 ],
@@ -671,7 +671,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "banner"
+                    "news"
                 ],
                 "parameters": [
                     {

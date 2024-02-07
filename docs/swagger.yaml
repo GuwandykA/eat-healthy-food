@@ -470,11 +470,11 @@ paths:
       security:
       - BearerAuth: []
       tags:
-      - banner
+      - news
     post:
       consumes:
       - application/json
-      description: create banner
+      description: create news
       parameters:
       - description: Create JSON
         in: body
@@ -497,7 +497,7 @@ paths:
     delete:
       consumes:
       - application/json
-      description: delete banner
+      description: delete news
       parameters:
       - description: news id
         in: path
@@ -514,7 +514,7 @@ paths:
       security:
       - BearerAuth: []
       tags:
-      - banner
+      - news
     get:
       consumes:
       - application/json

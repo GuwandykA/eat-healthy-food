@@ -523,7 +523,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "banner"
+                    "news"
                 ],
                 "parameters": [
                     {
@@ -554,7 +554,7 @@ const docTemplate = `{
                         "BearerAuth": []
                     }
                 ],
-                "description": "create banner",
+                "description": "create news",
                 "consumes": [
                     "application/json"
                 ],
@@ -669,7 +669,7 @@ const docTemplate = `{
                         "BearerAuth": []
                     }
                 ],
-                "description": "delete banner",
+                "description": "delete news",
                 "consumes": [
                     "application/json"
                 ],
@@ -677,7 +677,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "banner"
+                    "news"
                 ],
                 "parameters": [
                     {
