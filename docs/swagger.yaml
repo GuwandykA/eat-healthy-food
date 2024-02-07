@@ -137,7 +137,7 @@ definitions:
       title:
         type: string
     type: object
-host: 45.141.79.220
+host: 45.141.79.220:8081
 info:
   contact:
     email: support@swagger.io
