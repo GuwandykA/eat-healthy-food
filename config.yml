@@ -7,8 +7,8 @@ storage:
 #  host: localhost
   port: 5432
   database: simple_db
-  username: course_admin
-  password: course_password
+  username: simple_admin
+  password: simple_password
   pg_pool_max_conn: 100
 app_version: 0.0.1
 public_file_path: ./public
