@@ -5,8 +5,12 @@ import (
 	"github.com/gin-gonic/gin"
 	_ "github.com/swaggo/swag"
 	"net/http"
+	"saglyk-backend/internal/admin/banner"
+	bannerdb "saglyk-backend/internal/admin/banner/db"
 	"saglyk-backend/internal/admin/category"
 	catdb "saglyk-backend/internal/admin/category/db"
+	"saglyk-backend/internal/admin/news"
+	newsdb "saglyk-backend/internal/admin/news/db"
 	"saglyk-backend/pkg/logging"
 
 	"github.com/jackc/pgx/v4/pgxpool"
@@ -14,6 +18,8 @@ import (
 
 const (
 	categoryURL = "/v1/categories"
+	bannerURL   = "/v1/banner"
+	newsURL     = "/v1/news"
 )
 
 func Manager(client *pgxpool.Pool, logger *logging.Logger) *gin.Engine {
@@ -36,6 +42,16 @@ func Manager(client *pgxpool.Pool, logger *logging.Logger) *gin.Engine {
 	categoryRepository := catdb.NewRepository(client, logger)
 	categoryRouterHandler := category.NewHandler(categoryRepository, logger)
 	categoryRouterHandler.Register(categoryRouterManager)
+
+	bannerRouterManager := router.Group(bannerURL)
+	bannerRepository := bannerdb.NewRepository(client, logger)
+	bannerRouterHandler := banner.NewHandler(bannerRepository, logger)
+	bannerRouterHandler.Register(bannerRouterManager)
+
+	newsRouterManager := router.Group(newsURL)
+	newsRepository := newsdb.NewRepository(client, logger)
+	newsRouterHandler := news.NewHandler(newsRepository, logger)
+	newsRouterHandler.Register(newsRouterManager)
 
 	return router
 }

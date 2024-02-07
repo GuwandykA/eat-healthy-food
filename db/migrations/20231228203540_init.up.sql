@@ -19,3 +19,20 @@ CREATE TABLE  IF NOT EXISTS products (
             REFERENCES categories("id")
             ON UPDATE CASCADE ON DELETE CASCADE
     );
+
+CREATE TABLE  IF NOT EXISTS banner (
+    "id" bigserial primary key,
+    "img" character varying(250) NOT NULL ,
+    "updated_at" TIMESTAMP DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'UTC')  NOT NULL,
+    "created_at" TIMESTAMP DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'UTC')  NOT NULL
+    );
+
+CREATE TABLE  IF NOT EXISTS news (
+    "id" bigserial primary key,
+    "title" character varying(250) NOT NULL,
+    "content" text NOT NULL DEFAULT '',
+    "img" character varying(250) NOT NULL,
+    "date" character varying(250) NOT NULL,
+    "updated_at" TIMESTAMP DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'UTC')  NOT NULL,
+    "created_at" TIMESTAMP DEFAULT (CURRENT_TIMESTAMP AT TIME ZONE 'UTC')  NOT NULL
+    );

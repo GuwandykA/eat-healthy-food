@@ -19,6 +19,27 @@ definitions:
       status:
         type: boolean
     type: object
+  banner.AddBannerDTO:
+    properties:
+      imagePath:
+        type: string
+    type: object
+  banner.DataBannerDTO:
+    properties:
+      banners:
+        items:
+          $ref: '#/definitions/banner.GetBannerDTO'
+        type: array
+      count:
+        type: integer
+    type: object
+  banner.GetBannerDTO:
+    properties:
+      Id:
+        type: integer
+      imagePath:
+        type: string
+    type: object
   category.CategoryDTO:
     properties:
       Id:
@@ -81,7 +102,42 @@ definitions:
       name:
         type: string
     type: object
-host: localhost:8081
+  news.AddNewsDTO:
+    properties:
+      content:
+        type: string
+      date:
+        type: string
+      imagePath:
+        type: string
+      title:
+        type: string
+    type: object
+  news.DataNewsDTO:
+    properties:
+      count:
+        type: integer
+      news:
+        items:
+          $ref: '#/definitions/news.GetNewsDTO'
+        type: array
+    type: object
+  news.GetNewsDTO:
+    properties:
+      Id:
+        type: integer
+      content:
+        type: string
+      created_at:
+        type: string
+      date:
+        type: string
+      imagePath:
+        type: string
+      title:
+        type: string
+    type: object
+host: 45.141.79.220
 info:
   contact:
     email: support@swagger.io
@@ -95,6 +151,123 @@ info:
   title: Admin Course APIs
   version: "1.0"
 paths:
+  /banner:
+    get:
+      consumes:
+      - application/json
+      description: all data banner
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: page
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/banner.DataBannerDTO'
+      security:
+      - BearerAuth: []
+      tags:
+      - banner
+    post:
+      consumes:
+      - application/json
+      description: create banner
+      parameters:
+      - description: Create JSON
+        in: body
+        name: banner
+        required: true
+        schema:
+          $ref: '#/definitions/banner.AddBannerDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/banner.GetBannerDTO'
+      security:
+      - BearerAuth: []
+      tags:
+      - banner
+  /banner/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete banner
+      parameters:
+      - description: banner ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      tags:
+      - banner
+    get:
+      consumes:
+      - application/json
+      description: one data banner
+      parameters:
+      - description: banner ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/banner.GetBannerDTO'
+      security:
+      - BearerAuth: []
+      tags:
+      - banner
+    put:
+      consumes:
+      - application/json
+      description: update banner
+      parameters:
+      - description: banner ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Create JSON
+        in: body
+        name: banner
+        required: true
+        schema:
+          $ref: '#/definitions/banner.AddBannerDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      tags:
+      - banner
   /categories/add:
     post:
       consumes:
@@ -122,7 +295,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: create and update data  sub-categories
+      description: create and update data  product
       parameters:
       - description: Create JSON
         in: body
@@ -168,7 +341,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: delete data  sub-categories
+      description: delete data  product
       parameters:
       - description: Delete JSON
         in: body
@@ -213,7 +386,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: product data
+      description: one data category
       parameters:
       - description: Get One JSON
         in: body
@@ -227,7 +400,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/category.SubCategoryDTO'
+            $ref: '#/definitions/category.DataDTO'
       security:
       - BearerAuth: []
       tags:
@@ -250,4 +423,144 @@ paths:
       - BearerAuth: []
       tags:
       - categories
+  /categories/get-product:
+    post:
+      consumes:
+      - application/json
+      description: product data
+      parameters:
+      - description: Get One JSON
+        in: body
+        name: categories
+        required: true
+        schema:
+          $ref: '#/definitions/category.ReqIdDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/category.SubCategoryDTO'
+      security:
+      - BearerAuth: []
+      tags:
+      - categories
+  /news:
+    get:
+      consumes:
+      - application/json
+      description: all data news
+      parameters:
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: page
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/news.DataNewsDTO'
+      security:
+      - BearerAuth: []
+      tags:
+      - banner
+    post:
+      consumes:
+      - application/json
+      description: create banner
+      parameters:
+      - description: Create JSON
+        in: body
+        name: news
+        required: true
+        schema:
+          $ref: '#/definitions/news.AddNewsDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/news.GetNewsDTO'
+      security:
+      - BearerAuth: []
+      tags:
+      - news
+  /news/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete banner
+      parameters:
+      - description: news id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      tags:
+      - banner
+    get:
+      consumes:
+      - application/json
+      description: one data news
+      parameters:
+      - description: news id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/news.GetNewsDTO'
+      security:
+      - BearerAuth: []
+      tags:
+      - news
+    put:
+      consumes:
+      - application/json
+      description: update news
+      parameters:
+      - description: news id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Create JSON
+        in: body
+        name: news
+        required: true
+        schema:
+          $ref: '#/definitions/news.AddNewsDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/news.GetNewsDTO'
+      security:
+      - BearerAuth: []
+      tags:
+      - news
 swagger: "2.0"
